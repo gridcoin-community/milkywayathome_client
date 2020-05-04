@@ -70,7 +70,7 @@ include(MWLink)
 include(PrintInfo)
 include(CheckCFlag)
 include(MSVCFlags)
-include(PreferStatic)
+#include(PreferStatic)
 include(CMakeDependentOption)
 include(CheckFunctionExists)
 include(Profiling)
@@ -79,10 +79,6 @@ include(BOINCPaths)
 #These must be after CheckCFlags is included
 
 #TODO: Make sure to use Apple GCC for releases
-if(HAVE_FLAG_STATIC_LIBGCC AND NOT APPLE)
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static-libgcc")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc")
-endif()
 
 if(HAVE_FLAG_PTHREAD)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
@@ -391,9 +387,6 @@ add_subdirectory(lua)
 add_subdirectory(dSFMT)
 add_definitions("${DSFMT_FLAGS}")
 
-if(SEPARATION_OPENCL)
-  add_subdirectory(libelf)
-endif()
 
 add_subdirectory(openpa)
 
@@ -444,7 +437,7 @@ if(BOINC_APPLICATION)
     add_subdirectory(boinc)
   else()
     message(STATUS "Trying to find BOINC")
-    find_package_static(BOINC REQUIRED)
+    find_package(BOINC REQUIRED)
   endif()
 
   include_directories(${BOINC_INCLUDE_DIR})

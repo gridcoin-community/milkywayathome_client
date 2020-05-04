@@ -79,7 +79,7 @@ mark_as_advanced(BOINC_INCLUDE_DIR BOINC_LIBRARY )
 
 if(BOINC_FOUND)
    set(CMAKE_REQUIRED_INCLUDES ${BOINC_INCLUDE_DIR})
-   check_struct_has_member("BOINC_OPTIONS" "multi_thread" "boinc_api.h" HAVE_BOINC_OPTIONS_MULTI_THREAD)
+   check_struct_has_member("BOINC_OPTIONS" "multi_thread" "boinc/boinc_api.h" HAVE_BOINC_OPTIONS_MULTI_THREAD)
    if(NOT HAVE_BOINC_OPTIONS_MULTI_THREAD)
      message(FATAL_ERROR "Found BOINC libraries too old")
    endif()

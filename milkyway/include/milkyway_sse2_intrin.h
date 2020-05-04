@@ -957,6 +957,7 @@ static __m128d _mm_pow_pd(__m128d base, __m128d power)
 	return gmx_mm_exp_pd(power * gmx_mm_log_pd(base));
 }
 
+ALWAYS_INLINE
 inline __m128d mw_abs_pd(__m128d x)
 {
     /*Homemade absolute value function.  Should work */
